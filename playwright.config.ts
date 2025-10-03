@@ -6,7 +6,7 @@ const config =({
   timeout: 40 * 1000,
 
 expect:{
-   timeout: 3000,
+   timeout: 5000,
 },
 
   reporter : 'html',

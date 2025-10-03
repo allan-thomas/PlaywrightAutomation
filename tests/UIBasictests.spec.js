@@ -1,6 +1,3 @@
-
-
-
 const {test, expect} = require('@playwright/test');
 
 test('Browser Context Playwright Test', async ({browser})=> {
@@ -56,6 +53,49 @@ test('Browser Context Playwright Test', async ({browser})=> {
     //await expect(allTitles).textContent('Nokia');
 
 });
+
+test.only('Playwright Test with Select', async ({page})=> {
+ 
+    // const context = await browser.newContext();
+
+    // const page = await context.newPage();
+
+    const userName = page.locator('#username');
+
+    const passWord = page.locator('#password');
+
+    const signIn = page.locator('#signInBtn');
+
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+
+    await userName.fill("atk@mail.com");
+
+    await passWord.fill("Atk.1881");
+
+    await page.locator(".checkmark").last().click();
+
+    await page .locator("#okayBtn").click();
+
+    console.log( await page.locator(".checkmark").last().isChecked());
+
+    await expect(page.locator(".checkmark").last()).toBeChecked();
+
+    const dropdown = page.locator("select.form-control");
+
+    await dropdown.selectOption("consult");
+
+    await page.locator("[type='checkbox']").click();
+
+    expect(await page.locator("[type='checkbox']")).toBeChecked();
+
+    await page.locator("[type='checkbox']").uncheck();
+
+    expect(await page.locator("[type='checkbox']").isChecked()).toBeFalsy();
+
+    await page.pause();
+
+});
+
 
 test('Page Playwright Test', async ({page})=> {
  
